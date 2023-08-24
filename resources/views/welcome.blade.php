@@ -443,7 +443,7 @@
 
 
         <div class="mx-4 text-center  text-gray-200 text-right  font2 ">
-            for <span class="text-[#7594ae]">Ohalei Menahem School</span> v1.0 ©  <?=date('Y') ?>
+            for <span class="text-[#7594ae]">Ohalei Mena'hem School</span> v1.0 ©  <?=date('Y') ?>
         </div>
     </div>
 
