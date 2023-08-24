@@ -1,6 +1,6 @@
 
 
-<section class=" font3 text-[#2f506c] text-lg mt-8 bg-gray-50 h-[230px]" >
+<section class=" font3 text-[#2f506c] text-lg mt-8 bg-gray-50 h-[230px]  hidden lg:block" >
     <p class="border-t-2 border-[#6091ba] pt-[15px] px-3 mt-4 pl-4 p-4 w-[200px]">
         <a href="{{ url('teachers') }}">{{ __('sections.team') }}</a></p>
 
