@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://tricorner.eu'),
+    'url' => env('APP_URL', 'https://ecoleom.ch'),
 
     'asset_url' => env('ASSET_URL', null),
 
