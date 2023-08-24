@@ -1,6 +1,6 @@
 
 {{--      third column   NAVIGATION           --}}
-<div class="w-auto    ">
+<div class="w-auto   hidden lg:block ">
     <section class=" bg-gray-50 text-[#2f506c] p-3 pt-[11px] pl-0">
         <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[16px] px-3">Navigation</a>
 
