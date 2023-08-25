@@ -69,7 +69,7 @@ class NovitasController extends Controller
      */
     public function index()
     {
-        $news = DB::table('novitas')->paginate(4);
+        $news = DB::table('novitas')->paginate(8);
 
         return view('layouts.default.news')->with([
             'news' => $news,
