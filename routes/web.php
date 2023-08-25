@@ -68,7 +68,7 @@ Route::get('/graduation', 'PagesController@graduation')->name('graduation');
 Route::get('/equipment', 'PagesController@equipment')->name('equipment');
 
 Route::post('/mlogin', 'PagesController@moodleLogin')->name('mlogin');
-Route::post('/search', 'PagesController@generalSeach')->name('search');
+Route::post('/search', 'PagesController@search')->name('search');
 Route::get('/nlike', 'NovitasController@like')->name('nlike');
 Route::get('/elike', 'EventsController@like')->name('elike');
 Route::get('/alike', 'ActivitiesController@like')->name('alike');
