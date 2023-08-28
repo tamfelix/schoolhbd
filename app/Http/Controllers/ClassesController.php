@@ -16,6 +16,7 @@ use App\Models\Service;
 use App\Models\Social;
 use App\Models\Teacher;
 use App\Models\Timetable;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class ClassesController extends Controller
@@ -126,9 +127,12 @@ class ClassesController extends Controller
     {
         //dd($request);
         $class = Classe::where('id', $request)->select(['id', 'title'])->get()->toArray();
+        $courses = Course::where('class_id', $request)->get();
 
         return view('layouts.default.class')->with([
             'class' => $class,
+            'courses' => $courses,                                       
+                                                   
 
             'topmenu' => $this->topmenu,
             'sidemenu' => $this->sidemenu,
