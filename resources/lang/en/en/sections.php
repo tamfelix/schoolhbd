@@ -61,6 +61,10 @@ return [
     'tostudents' => 'For students',
     'jobs' => 'Job openings',
     'account' => 'Account n',
+    'available' => 'Available courses are:',
+    'outline' => 'brief program year outline for this lesson:',
+    'detailsm' => 'More detailed summary and e-support will be available on Moodle platform',
+
 
 
 
