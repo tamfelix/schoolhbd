@@ -8,7 +8,7 @@
             <section class="text-gray-700 font3 m-6">
                 @if($courses)
                     @foreach($courses as $item)
-                        <p><a href="{{ route('courses.show', $item->id) }}">{{ $item->{'title_'.app()->getLocale()} }}</a>a></p>
+                        <p><a href="{{ route('courses.show', $item->id) }}">{{ $item->{'title_'.app()->getLocale()} }}</a></p>
                     @endforeach
                 
                 @else
