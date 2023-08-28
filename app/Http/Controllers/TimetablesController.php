@@ -68,7 +68,7 @@ class TimetablesController extends Controller
      */
     public function index()
     {
- $lessons = Timetable::orderby('timetable')->pluck('timetable', 'fromto')->toArray();
+ $lessons = Timetable::orderby('id')->pluck('timetable', 'fromto')->toArray();
    
         
         return view('layouts.default.timetable')->with([
