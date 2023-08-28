@@ -6,8 +6,13 @@
 
 
             <section class="text-gray-700 font3 m-6">
-                    {{ __('sections.soon') }}
+                    @if($classes)
+                        @foreach($classes as $item => $id)
+                            <a href="{{ route('classes.show', $item) }}" class="text-green-100 text-xl">{{ $id }}</a>
+                        @endforeach
+                    @endif
             </section>
+
 
 
     </div>
