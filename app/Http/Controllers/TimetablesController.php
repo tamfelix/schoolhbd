@@ -68,15 +68,12 @@ class TimetablesController extends Controller
      */
     public function index()
     {
-        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
-        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
-        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
-        $socials = Social::orderby('icon_order')->get()->toArray();
-        $contact = Contact::where('id', 1)->get()->toArray();
-        $timetable = Timetable::orderby('timetable')->pluck('timetable', 'fromto')->toArray();
-        $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
+ $lessons = Timetable::orderby('timetable')->pluck('timetable', 'fromto')->toArray();
+   
+        
         return view('layouts.default.timetable')->with([
+            'lessons' => $lessons,
+            
             'topmenu' => $this->topmenu,
             'sidemenu' => $this->sidemenu,
             'socials' => $this->socials,
