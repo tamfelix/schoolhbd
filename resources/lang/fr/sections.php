@@ -60,7 +60,10 @@ return [
     'equipment' => 'Equipement de classes',
     'tostudents' => "Pour les étudiants",
     'jobs' => 'Emplois',
-    'account' => 'Numero de compte'
+    'account' => 'Numero de compte',
+    'available' => 'Les cours disponibles sont:',
+    'outline' => "un petit resumé du cours pour cette année",
+    'detailsm' =>'Vous trouverez plus de details et e-support sur plateforme Moodle',
 
 
 
