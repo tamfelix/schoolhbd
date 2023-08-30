@@ -5,6 +5,12 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Trix;
 
 class Photo extends Resource
 {
@@ -41,6 +47,10 @@ class Photo extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('titre en fr','title_fr')->sortable(),
+            Text::make('titre en ang','title_en')->sortable()->hideFromIndex(),
+            File::make('link')->disk('public_html')->path('img/events'),
+            Date::make('date creation' , 'created_at')->sortable(),
         ];
     }
 
