@@ -51,7 +51,7 @@ class PagesController extends Controller
         $this->socials = Social::orderby('icon_order')->get()->toArray();
         $this->contact = Contact::where('id', 1)->get()->toArray();
         $this->timetable = Timetable::orderby('timetable')->take(4)->pluck('timetable', 'fromto')->toArray();
-        $this->news = Novita::latest()->take(6)->get();
+        $this->news = Novita::latest()->orderBy('created_at', 'desc')->take(6)->get();
         $this->teachers = Teacher::orderBy('surname')->get()->toArray();
         $this->director = Employee::where('id', 1)->get()->toArray();
         $this->services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
