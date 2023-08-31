@@ -5,6 +5,12 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Trix;
 
 class Timetable extends Resource
 {
@@ -41,6 +47,8 @@ class Timetable extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('indexe du cours', 'timetable'),
+            Text::make('cours', 'fromto'),
         ];
     }
 
