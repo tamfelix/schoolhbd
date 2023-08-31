@@ -5,6 +5,13 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Avatar;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Trix;
 
 class Event extends Resource
 {
@@ -41,6 +48,15 @@ class Event extends Resource
     {
         return [
             ID::make()->sortable(),
+    
+            Text::make('title en fr','title_fr')->sortable(),
+            Text::make('title en ang','title_en')->sortable(),
+            Text::make('texte en fr','content_fr')->sortable()->hideFromIndex(),
+            Text::make('texte en ang','content_en')->sortable()->hideFromIndex(),
+            Text::make('vu','views')->sortable()->hideFromIndex(),
+            Text::make('like','likes')->sortable()->hideFromIndex(),
+            Avatar::make('photo','img')->disk('public_html')->path('img/events'),
+            Date::make('date creation' , 'created_at')->sortable(),
         ];
     }
 
