@@ -5,6 +5,13 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Trix;
+use Laravel\Nova\Fields\Avatar;
 
 class Student extends Resource
 {
@@ -41,6 +48,13 @@ class Student extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('prenom','name')->sortable(),
+            Text::make('nom','surname')->sortable(),
+            Text::make('classe','class_id')->sortable(),
+            Text::make('parents','parent_id')->sortable()->hideFromIndex(),
+            Date::make('date de naissance','dob')->sortable()->hideFromIndex(),
+            Avatar::make('photo','img')->disk('public_html')->path('img/students'),
+            Date::make('date creation' , 'created_at')->sortable()->hideFromIndex(),
         ];
     }
 
