@@ -49,7 +49,9 @@ class Photo extends Resource
             ID::make()->sortable(),
             Text::make('titre en fr','title_fr')->sortable(),
             Text::make('titre en ang','title_en')->sortable()->hideFromIndex(),
-            File::make('link')->disk('public_html')->path('img/events'),
+            Text::make('texte en fr','content_fr')->sortable()->hideFromIndex(),
+            Text::make('texte en fr','content_fr')->sortable()->hideFromIndex(),
+            File::make('lien','link')->disk('public_html')->path('img/events'),
             Date::make('date creation' , 'created_at')->sortable(),
         ];
     }
