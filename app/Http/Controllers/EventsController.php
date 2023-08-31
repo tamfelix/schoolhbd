@@ -60,7 +60,7 @@ class EventsController extends Controller
         $this->photos = Photo::orderBy('created_at')->take(15)->select('id', 'link')->get();
         $this->activities = Activitie::orderBy('created_at')->take(4)->get();
         $this->classes = Classe::all()->pluck('title', 'id')->toArray();
-        $this->events = Event::latest()->take(4)->get();
+        $this->events = Event::latest()->take(4)->orderBy('created_at', 'desc')->get();
         $this->footer = Page::findMany([10, 11, 12, 15, 9]);
     }
     /**
