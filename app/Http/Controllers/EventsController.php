@@ -70,7 +70,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $event = DB::table('events')->paginate(4);
+        $event = DB::table('events')->orderBy('created_at', 'desc')->paginate(4);
 
         return view('layouts.default.events')->with([
             'event' => $event,
