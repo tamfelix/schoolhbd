@@ -12,6 +12,7 @@ use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\Trix;
+use Laravel\Nova\Fields\Number;
 
 class Event extends Resource
 {
@@ -47,14 +48,13 @@ class Event extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
-    
+             ID::make()->sortable(),
             Text::make('title en fr','title_fr')->sortable(),
             Text::make('title en ang','title_en')->sortable(),
-            Text::make('texte en fr','content_fr')->sortable()->hideFromIndex(),
-            Text::make('texte en ang','content_en')->sortable()->hideFromIndex(),
-            Text::make('vu','views')->sortable()->hideFromIndex(),
-            Text::make('like','likes')->sortable()->hideFromIndex(),
+            Textarea::make('texte en fr','content_fr')->sortable()->hideFromIndex(),
+            Textarea::make('texte en ang','content_en')->sortable()->hideFromIndex(),
+            Number::make('vu','views')->sortable()->hideFromIndex(),
+            Number::make('like','likes')->sortable()->hideFromIndex(),
             Avatar::make('photo','img')->disk('public_html')->path('img/events'),
             Date::make('date creation' , 'created_at')->sortable(),
         ];
