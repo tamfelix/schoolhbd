@@ -76,7 +76,7 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        $activities = DB::table('activities')->paginate(2);
+        $activities = DB::table('activities')->paginate(4);
         $text = Page::where('id', 13)->select(['title_en', 'title_fr'])->get();
 
         return view('layouts.default.activities')->with([
