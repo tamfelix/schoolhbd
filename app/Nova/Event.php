@@ -48,14 +48,16 @@ class Event extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-             ID::make()->sortable(),
+           ID::make()->sortable(),
+            Avatar::make('photo','img')->disk('public_html')->path('img/events'),
             Text::make('title en fr','title_fr')->sortable(),
-            Text::make('title en ang','title_en')->sortable(),
+            Text::make('title en ang','title_en')->sortable()->hideFromIndex(),
             Textarea::make('texte en fr','content_fr')->sortable()->hideFromIndex(),
             Textarea::make('texte en ang','content_en')->sortable()->hideFromIndex(),
             Number::make('vu','views')->sortable()->hideFromIndex(),
             Number::make('like','likes')->sortable()->hideFromIndex(),
-            Avatar::make('photo','img')->disk('public_html')->path('img/events'),
+            
+            Text::make('Emplacement','location')->sortable(),
             Date::make('date creation' , 'created_at')->sortable(),
         ];
     }
