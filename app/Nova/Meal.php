@@ -5,6 +5,12 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Avatar;
+use Laravel\Nova\Fields\Trix;
 
 class Meal extends Resource
 {
@@ -41,6 +47,13 @@ class Meal extends Resource
     {
         return [
             ID::make()->sortable(),
+            Avatar::make('photo','img')->disk('public_html')->path('img/meals'),
+            Text::make('titre en fr','title_fr')->sortable(),
+            Text::make('titre en ang','title_en')->sortable()->hideFromIndex(),
+            
+            Textarea::make('texte en fr','content_fr')->sortable()->hideFromIndex(),
+            Textarea::make('texte en ang','content_en')->sortable()->hideFromIndex(),
+            Date::make('date creation', 'created_at')->sortable(),
         ];
     }
 
