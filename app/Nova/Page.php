@@ -5,6 +5,12 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Avatar;
+use Laravel\Nova\Fields\Trix;
 
 class Page extends Resource
 {
@@ -41,6 +47,12 @@ class Page extends Resource
     {
         return [
             ID::make()->sortable(),
+             
+            Text::make('titre en fr','title_fr')->sortable(),
+            Text::make('titre en ang','title_en')->sortable()->hideFromIndex(),
+            Text::make('ordre de pages','page_order')->sortable(),
+            Textarea::make('texte en fr','content_fr')->sortable()->hideFromIndex(),
+            Textarea::make('texte en ang','content_en')->sortable()->hideFromIndex(),
         ];
     }
 
