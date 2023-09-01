@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Avatar;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Trix;
+use Laravel\Nova\Fields\Number;
+
 
 class Activitie extends Resource
 {
@@ -42,8 +50,16 @@ class Activitie extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('title_fr')->sortable(),
-            Text::make('created_at')->sortable(),
+            Text::make('titre en fr', 'title_fr')->sortable(),
+            Text::make('titre en fr', 'title_en')->sortable()->hideFromIndex(),
+            Textarea::make('texte en fr', 'content_fr')->sortable()->hideFromIndex(),
+            Textarea::make('texte en ang', 'content_en')->sortable()->hideFromIndex(),
+            Avatar::make('photo','img')->disk('public_html')->path('img/activities'),
+            Date::make('date', 'created_at')->sortable(),
+            Text::make('emplacement', 'location')->sortable()->hideFromIndex(),
+            number::make('likes', 'likes')->sortable()->hideFromIndex(),
+            number::make('vu', 'views')->sortable()->hideFromIndex(),
+            
         ];
     }
 
