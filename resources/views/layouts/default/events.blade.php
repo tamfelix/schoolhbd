@@ -24,7 +24,9 @@
                                     <div class="font3 text-xl text-[#7fa7cb] pl-4 py-4">
                                         <a href="{{ route('events.show', $evento->id) }}">{{ $evento->{'title_'.app()->getLocale() } }}</a>
                                     </div>
-                                    <img src="{{ env('APP_URL').$evento->img}}" class="w-[400px] h-auto  m-4 frame">
+                                    @if($evento->img)
+                                        <img src="{{ env('APP_URL').'/'.$evento->img}}" class="w-[400px] h-auto  m-4 frame" alt = "{{ $evento->{'title_'.app()->getLocale() } }}" title="{{ $evento->{'title_'.app()->getLocale() } }}">
+                                    @endif
                                 </div>
                                 <p class="font3 pl-12 text-gray-800">{{ $evento->{'content_'.app()->getLocale()} }} </p>
 
@@ -52,6 +54,16 @@
                                             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                         </svg>
                                         <p class="pl-1 ">{{$evento->views}}</p>
+                                        
+                                        <!--LOCATION-->
+                                        @if( $evento->location )
+                                        <div class="mx-3 flex inline-flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                        </svg>
+                                            <p class="ml-1">{{$evento->location}}</p>
+                                        </div>    
+                                        @endif    
                                     </div>
                                 </div>
                             </div>

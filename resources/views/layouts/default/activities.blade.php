@@ -23,7 +23,7 @@
                                 <a href="{{ route('activities.show', $new->id) }}">{{ $new->{'title_'.app()->getLocale()} }}</a>
                             </div>
                             @if(env('APP_URL').$new->img)
-                                <img src="{{ env('APP_URL').$new->img }}" class="w-[400px] h-auto frame m-4">
+                                <img src="{{ env('APP_URL').'/'.$new->img }}" class="w-[400px] h-auto frame m-4">
                             @endif
                         </div>
                         <p class="font3 pl-12 text-gray-800">

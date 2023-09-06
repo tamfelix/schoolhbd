@@ -8,7 +8,10 @@
 
 
                     <section class="text-gray-700 h3 m-6">
-                        <img src="{{ env('APP_URL').'/img/teachers/'.$enseignant[0]->img ?? '' }}" class="h-[200px] my-6">
+                        @if($enseignant[0]->img)
+                            <img src="{{ env('APP_URL').'/img/teachers/'.$enseignant[0]->img ?? '' }}" class="h-[200px] my-6">
+                    
+                        @endif
                         {{  $enseignant[0]->name.' '.  $enseignant[0]->surname  ?? ''}}
                     </section>
 

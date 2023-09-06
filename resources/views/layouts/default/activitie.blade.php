@@ -23,10 +23,10 @@
                                 {{ $item[0]->{'title_'.app()->getLocale()} }}
                             </div>
                             @if(env('APP_URL').$item[0]->img)
-                                <img src="{{ env('APP_URL').$item[0]->img }}" class="w-[400px] h-auto  m-4 frame">
+                                <img src="{{ env('APP_URL').'/'.$item[0]->img }}" class="w-[400px] h-auto  m-4 frame">
                             @endif
                         </div>
-                        <p class="font3 pl-12 text-gray-800">
+                        <p class="font3 pl-12 text-gray-800 my-4">
                             {{ $item[0]->{'content_'.app()->getLocale()} }}
                         </p>
 

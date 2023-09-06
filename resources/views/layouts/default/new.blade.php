@@ -10,22 +10,22 @@
 
 
                 {{--news section        --}}
-                <section class="my-8 bg-gray-50 p-5  mr-5">
+                <section class="my-8 bg-gray-50 p-5  ">
                     {{--   news1     --}}
                             <div class="">
-                                <div class="flex flex-col items-center">
-
+                                <div class="flex flex-col items-center ">
+                                        <!--title--->
                                     <div class="font3 text-xl text-[#7fa7cb] pl-4 pb-8">
                                         {{ $item[0]->{'title_'.app()->getLocale() } }}
                                     </div>
                                     @if(  $item[0]->photo  )
-                                        <img src="{{ env('APP_URL') }}/img/{{$item[0]->photo}}" class="w-[400px] h-auto  m-4">
+                                        <img src="{{ env('APP_URL') }}/{{$item[0]->photo}}" class="w-[400px] h-auto  my-4 mb-6 frame items-center">
                                     @endif
                                 </div>
-                                <p class="font3 pl-12 text-gray-800">{{ $item[0]->{'content_'.app()->getLocale()} }} </p>
+                                <p class="font3 pl-12 text-gray-800 mr-5 my-8"> {!! $item[0]->{'content_'.app()->getLocale()} !!} </p>
 
                                 <div class="flex inline-flex font4 text-gray-600 py-4 w-full justify-between ">
-                                    <div class="flex inline-flex font4 text-gray-600  w-[70%] items-center">
+                                    <div class="flex inline-flex font4 text-gray-600  w-[70%] items-center mt-4">
 {{--                                        DATE--}}
                                         <i class="fa fa-calendar fa-lg   pr-2 pl-12 text-[text-gray-500]"></i>
                                         <p class=" ">{{ substr($item[0]->created_at, 0, 10)}}</p>

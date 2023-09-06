@@ -56,10 +56,10 @@
 
     {{--                        DIRECTORS DETAILS--}}
     <section class=" bg-gray-50 text-[#2f506c] p-3 pt-[13px] pl-0 mt-4 h-[250px]">
-        <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[15px] px-3 ">Direction</a>
+        <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[15px] px-3 text-center" href="{{ url('comitee') }}">Direction</a>
         @foreach($director as $dir)
-            <div class="pl-4">{{$dir['name']}} {{ $dir['surname']}}</div>
-            <img src="{{env('APP_URL')}}/img/teachers/{{$dir['img']}}" class="w-[160px] h-auto pl-4 pt-4">
+            <div class=" text-center">{{$dir['name']}} {{ $dir['surname']}}</div>
+            <img src="{{env('APP_URL')}}/img/teachers/{{$dir['img']}}" class="w-[160px] h-auto  mt-4 mx-auto ">
         @endforeach
     </section>
 </div>

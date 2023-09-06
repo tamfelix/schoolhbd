@@ -12,18 +12,18 @@
                 {{--news section        --}}
 
                     {{--   news1     --}}
-                            <div class="">
+                            <div class="my-10">
                                 <div class="flex flex-col items-center">
 
                                     <div class="font3 text-xl text-[#7fa7cb] pl-4 pb-4">
                                         <a href=" {{ route('novitas.show', $new->id) }} ">{{ $new->{'title_'.app()->getLocale()} }}</a>
                                     </div>
                                     @if ($new->photo)
-                                        <img src="{{ env('APP_URL').'/img/news/'.$new->photo }}" class="w-[400px] h-auto  m-4 pb-4">
+                                        <img src="{{ env('APP_URL').'/'.$new->photo }}" class="w-[400px] h-auto  m-4 pb-4 frame">
                                     @endif
                                 </div>
                                 <p class="font3 pl-12 text-gray-800 py-4">
-                                    {{ $new->{'content_'.app()->getLocale()} }}
+                                    {!! $new->{'content_'.app()->getLocale()} !!}
                                 </p>
 
                                 <div class="flex inline-flex font4 text-gray-600 py-4 w-full justify-between ">

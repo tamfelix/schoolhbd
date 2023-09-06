@@ -17,7 +17,9 @@
                                         <div class="font3 text-xl text-[#7fa7cb] pl-4">
                                             {{ $item->{ 'title_'.app()->getLocale()} }}
                                         </div>
-                                        <img src="{{env('APP_URL').'/img/meals/'.$item->img}}" class="w-[400px] frame h-auto  m-4">
+                                        @if($item->img)
+                                        <img src="{{env('APP_URL').'/'.$item->img}}" class="w-[400px] frame h-auto  m-4" alt="school meal of the day " title="{{ $item->{ 'content_'.app()->getLocale()} }}">
+                                        @endif
                                     </div>
                                     <p class="font3 pl-12 text-gray-800">
                                         {{ $item->{ 'content_'.app()->getLocale()} }}

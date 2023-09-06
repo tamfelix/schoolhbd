@@ -11,7 +11,9 @@
                 <div class="mx-auto">
                     <p class="text-center">{{ $unit->{'title_'.app()->getLocale()} }}</p>
                     @if(env('APP_URL').$unit->link)
-                    <img src="{{env('APP_URL').$unit->link}}" class="m-2 frame ">
+                        <!--<a href="javascript:showImage('image')">-->
+                            <img src="{{env('APP_URL').'/'.$unit->link}}" class="m-2 frame " id='image' onCLick="javascript:showImage('image')" >
+                            <!--</a>-->
                     @endif
                     <p class="text-gray-700 font3 m-6">
                         {!!  $unit->{'content_'.app()->getLocale()} !!}
@@ -29,5 +31,8 @@
                 <x-rightmenu :sidemenu="$sidemenu" :director="$director"  />
 
            <x-endtag/>
+           
+           
+           <script>function showImage($id){document.getElementById("image");}</script>
 
 @endsection

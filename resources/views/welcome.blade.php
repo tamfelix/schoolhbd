@@ -24,7 +24,8 @@
 
 
         <style>
-            body {}
+            body {width: 100vw;}
+            .adapt{width: 100vw;}
             .font1 {font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 300;  }
             .font2{font-family: 'Open Sans', sans-serif; font-size: 14px; font-weight: 300; line-height: 20px;}
             .font3{font-family: 'Open Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 29px;}
@@ -38,6 +39,16 @@
             .parent{position: static; display: inline-block}
                 .frame{ border: 10px solid rgb(242, 240, 240);
                 box-shadow: 0 0 3px grey}
+            
+            .frame1{border: 3px solid white; box-shadow: 0 0 1px grey}    
+                
+            @media screen and (max-width:640px){
+                .smhidden(display:none;)
+            }
+            
+            @media screen and (max-width: 1024px){
+                .mdhidden(display:none)
+            }
 
         </style>
     </head>
@@ -45,10 +56,10 @@
     <main class="antialiased  ">
 
 {{--    AD MENU--}}
-    <nav class=" bg-blue-800 text-blue-400 h-[32px] font2 items-center flex ">
-        <ul class="flex inline-flex items-center ">
+    <nav class=" bg-blue-800 text-blue-400 h-[32px] font2 items-center flex hidden lg:block ">
+        <ul class="flex inline-flex items-center  ">
             @foreach($topmenu as $aditem)
-            <a href=" {{ url($aditem->link)  }} "><li class="list-none  p-2">{{ ucfirst( $aditem->{'title_'.$locale} ) }}   &nbsp; | </li>
+            <a href=" {{ url($aditem->link)  }} "><li class="list-none  p-2 ">{{ ucfirst( $aditem->{'title_'.$locale} ) }}   &nbsp; | </li>
             @endforeach
 
 {{--AUTH--}}
@@ -83,54 +94,43 @@
 
 {{--SOCIAL MENU--}}
 
-        <nav class="flex inline-flex justify-between bg-blue-700 h-[43px] w-[100%] text-white  pl-2 font2 uppercase items-center">
-            <div class="flex inline-flex items-center">
+    <nav class="hidden lg:block md:block  bg-blue-700 h-[43px] w-[100%] text-white  pl-2 font2 uppercase ">
+        <div class = "flex flex-row h-full w-[100%] ">
+            <div class="flex inline-flex items-center my-auto h-full ">
                 @foreach($socials as  $icon)
-                    <a href="{{$icon['hlink']}}"><li class="ml-2  mx-1 p-1.5  rounded-2xl bg-blue-800">{!!$icon['link']!!}</li></a>
+                    <li class="ml-2  mx-1 p-1.5  rounded-2xl bg-blue-800 "><a href="{{$icon['hlink']}}">{!!$icon['link']!!}</a></li>
                 @endforeach
-
-
             </div>
-            <div class="inline-flex flex-row">
-            {{--        SEARCH WINDOW        --}}
-
-                <form class=" inline-flex ml-48" action="" method="POST">
+             {{--        SEARCH WINDOW        --}}
+            <div class="  w-[290px] inline-flex m-auto h-[43px] p-2 ">
+                <form class=" inline-flex  " action="{{ url('search') }}" method="POST">
                     @csrf
                     @method('POST')
-                    <input type="search" class="  h-[26px] w-26 ml-2  text-grey-100 flex" content="search..."  >
+                    <input type="search" class="  h-[26px] w-26 ml-2  text-grey-100 flex" name="search"  >
                     <input type="submit" value="{{ __('messages.search') }}" class="bg-green-600 h-[26px] rounded text-xs  ml-[3px] w-18 px-2">
                 </form>
                 {{-- LANGUAGE CHANGE               --}}
+            </div>
 
-
-                <div class="mx-2">
+            <div class="mx-2  inline-flex my-auto h-[43px] pr-4">
                 @foreach(config('app.available_locales') as $area)
                     <a href="{{request()->url() }}?language={{ $area }}"
                         class="@if ( app()->getLocale() == $area ) border-b border-white border-b-2  @endif inline-flex items-center px-1">
                         {{strtoupper($area)}}
                     </a>
                 @endforeach
-                </div>
-                    {{--                {{ __('messages.welcome') }}--}}
-{{--                <form action="{{route('changeLang')}}" method="POST">--}}
-                    @csrf
-                    @method('POST')
-{{--                    <select name="lang" id="lang" class="inline-flex h-4 bg-transparent changeLang">--}}
-{{--                        <option value="fr" {{ session()->get('locale') == 'fr' ? 'selected' : '' }}>Fr</option>--}}
-{{--                        <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>Eng</option>--}}
-{{--                    </select>--}}
-
-{{--                </form>--}}
             </div>
-        </nav>
+        </div>
+      
+   </nav>
 
 
 
 
 {{--LOGO SECTION--}}
-    <nav class="relative flex items-top justify-center bg-gray-50   items-center sm:pt-0 ">
+    <nav class="relative flex items-top justify-center bg-gray-50   items-center sm:pt-0 hidden lg:block">
 
-            <section class="flex justify-between h-[113px]  w-full  text-[#6c9abf]  items-center">
+            <section class="flex justify-between h-[113px]  w-full  text-[#6c9abf]  items-center smhidden">
                 <div class="flex inline-flex w-[50%]  ">
                     <a href="{{ url('/') }}" class="">
                         @foreach($contact as $habad) @endforeach
@@ -161,8 +161,9 @@
     </nav>
 
 {{--  MID MENU              --}}
-    <nav>
-                <ul class="flex inline-flex bg-blue-400 h-10 w-[100%]  text-white  pl-7 font3 uppercase items-center position-relative">
+<!--desktop menu-->
+    <nav class="hidden lg:block md:block">
+                <ul class="flex inline-flex bg-blue-400 h-10 w-[100%]  text-white  pl-7 font3 uppercase items-center position-relative ">
 
                     <div class="dropdown show items-center "><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -172,7 +173,7 @@
 
                         @foreach($midmenu as $menu)
                         <li><a class=" mx-3"  href="#" role ="btn" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ $menu->{'title_'.$locale} }}<i class="fa fa-angle-down mx-1"></i>
+                                {{ $menu->{'title_'.$locale} }}<i class="fa fa-angle-down mx-1  "></i>
                             </a>
 
 
@@ -185,8 +186,30 @@
                 </ul>
     </nav>
 
+<!--mobile menu-->
+<nav class="lg:hidden md:hidden">
+                <ul class="flex inline-flex bg-blue-400 h-fit w-[100%]  text-white   font3  items-center position-relative flex-wrap text-center">
+
+                    <div class="dropdown show items-center "></div>
+
+                        <li class="px-2"><a href="{{url('novitas')}}">news</a></li>
+
+                        @foreach($midmenu as $menu)
+                        <li class="text-center m-auto"><a class=" mx-3"  href="#" role ="btn" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ $menu->{'title_'.$locale} }}
+                            </a>
+
+
+                            <ul class="dropdown-menu mt-[11px] rounded-0" aria-labelledby="dropdownMenuLink">
+                                {!! $menu->{'link_'.$locale} !!}
+                            </ul>
+                        </li>
+                    @endforeach
+
+                </ul>
+    </nav>
 {{--        BLADE CONTENT--}}
-<main class="mx-auto p-0 items-center w-full  flex flex-row">
+<main class="mx-auto p-0 items-center w-full  flex flex-row ">
             @yield('content')
 
 
@@ -198,7 +221,7 @@
                     @php $url = route('parachas.show', 1); $label = __('sections.paracha');   @endphp
                     <x-section :label="$label" :url="$url" />
                     <div class="">
-                            <h3 class="m-auto py-3 text-center">{{ $paracha[0]->{'title_'.$locale}   }}</h3>
+                            <h3 class="m-auto py-3 text-center ">{{ $paracha[0]->{'title_'.$locale}   }}</h3>
                             <p class="font3 py-2 ">{{ $paracha[0]->{'content_'.$locale}   }}</p>
 
                     </div>
@@ -208,7 +231,7 @@
 {{--                        SERVICES                --}}
                     @php $label = __('sections.services'); $url = route('services.index'); @endphp
                     <x-section :label="$label" :url="$url" />
-                            <div class="flex flex-col mt-16  max-h-[120px] w-full flex-wrap">
+                            <div class="flex flex-col lg:h-max-[120px] sm:mt-0 sm:mb-3  w-100%  h-fit flex-wrap mx-auto  ">
                                 @foreach( $services as $service )
                                     <p class="text-sm p-1 justify-between ">
                                         <a href="{{route('services.show', $service->id)}}" class="flex inline-flex">
@@ -240,13 +263,13 @@
 {{--                          EVENTS--}}
                     @php $label = __('sections.events'); $url=route('events.index'); @endphp
                     <x-section :label="$label" :url="$url" />
-                    <div class="flex inline-flex">
+                    <div class="flex inline-flex w-fit flex-wrap pb-4">
                     @foreach($events as $event)
 
-                            <a href="{{ route('events.show', $event->id) }}" class="px-4">
+                            <a href="{{ route('events.show', $event->id) }}" class="px-4 pb-2 pt-4 m-auto">
                                 <p class="text-center">{{ $event->{'title_'.$locale} }}</p>
-                                @if( env('APP_URL').$event->img )
-                                    <img src="{{ env('APP_URL').$event->img }}" class="h-[200px] mx-auto mt-3 frame items-center">
+                                @if( $event->img )
+                                    <img src="{{ env('APP_URL').'/'.$event->img }}" class="h-[200px] w-auto mx-auto mt-3 frame items-center">
                                 @endif
                             </a>
 
@@ -258,11 +281,13 @@
 {{--                        PHOTOS     --}}
                     @php $label = __('sections.photos'); $url = route('photos.index'); @endphp
                         <x-section :label="$label" :url="$url" class=""/>
+                        <div class="flex inline-flex flex-wrap w-full  h-full">
                         @foreach($photos as $img)
                             <a href="{{route('photos.show',$img->id )}}">
-                                <img src="{{env('APP_URL').$img->link}}" class="h-[100px] frame">
+                                <img src="{{env('APP_URL').'/'.$img->link}}" class="h-[100px] frame w-[100px] mx-2">
                             </a>
                         @endforeach
+                        </div>
                     </div>
 
 
@@ -278,7 +303,7 @@
                     @php $label = __('sections.program'); $url=url('program'); @endphp
                     <x-section :label="$label" :url="$url"/>
                         <p> {{ __('sections.select') }}</p>
-                        <div class="flex inline-flex text-center mx-auto mt-5">
+                        <div class="flex inline-flex text-center mx-auto mt-5 flex-wrap">
                             @foreach($classes as $id => $class)
                                 <a class=" p-2 text-green-600" href="{{ route('classes.show', $id) }}">{{ $class }}</a>
                             @endforeach
@@ -291,17 +316,28 @@
 
                     @php $label = __('sections.activities'); $url=route('activities.index'); @endphp
                     <x-section :label="$label" :url="$url" />
-                    <div class="flex inline-flex">
+                    <div class="flex inline-flex flex-wrap m-auto">
                         @foreach($activities as $act)
-                            <a class="w-[200px] pb-5 text-center items-center mx-4 " href="{{ route('activities.show', $act->id) }}">
-                                {{ $act->title_en }}
-                                <div class="my-3">
-                                @if( env('APP_URL').$act->img )
-                                    <img src="{{ env('APP_URL').$act->img }}" class="h-[200px]  m-auto frame items-center ">
-                                @endif
+                        <a class="" href="{{ route('activities.show', $act->id) }}">
+                                <div class="w-[200px] pb-5 text-center items-center mx-2">
+                                    
+                                        <div class=" min-h-[100px] ">
+                                            {{ substr ($act->title_en, 0, 60) }}
+                                        </div>
+                                  
+                                    <div class="my-3">
+                                    @if( env('APP_URL').$act->img )
+                                        <img src="{{ env('APP_URL').'/'.$act->img }}" class="h-[200px]  m-auto frame items-center ">
+                                    @endif
+                                    </div>
+                                    <p class="font3 hidden lg:block">
+                                        @if($act->content_en)
+                                            {{ substr($act->content_en, 0, 100) }} ...
+                                        @endif
+                                    </p>
                                 </div>
-                                <p class="font3">{{ $act->content_en }}</p>
-                            </a>
+                                  </a>
+                            
                         @endforeach
                     </div>
                     </div>
@@ -309,11 +345,11 @@
 {{--                                INSCRIPTIONS--}}
                     @php $label = __('sections.enquiries'); $url=''; @endphp
                     <x-section :label="$label" :url="$url" />
-                    <div class="mt-6 flex flex-col">
-                        <a href="{{ route('emails.create') }}">{{ __('sections.reserve') }}</a>
-                        <a href="{{ route('emails.create') }}">{{ __('sections.information') }}</a>
-                        <a href="{{ route('candidates.create') }}">{{ __('sections.enroll') }}</a>
-                        <a href="{{ route('emails.create') }}">{{ __('sections.booklet') }}</a>
+                    <div class="mt-6 flex flex-col mx-auto">
+                        <a href="{{ route('emails.create') }}">- {{ __('sections.reserve') }}</a>
+                        <a href="{{ route('emails.create') }}">- {{ __('sections.information') }}</a>
+                        <a href="{{ route('candidates.create') }}">- {{ __('sections.enroll') }}</a>
+                        <a href="{{ route('emails.create') }}">- {{ __('sections.booklet') }}</a>
                     </div>
                     </div>
 
@@ -321,13 +357,13 @@
 {{--                     PARENTS       --}}
                     @php $label = __('sections.parents'); $url=url('toparents') @endphp
                     <x-section :label="$label" :url="$url"   />
-                        <div CLASS="flex flex-col flex-wrap h-[120px] mt-6">
-                        <a href="{{ url('aboutm') }}">{{ __('sections.esupport') }}</a>
-                        <a href="{{ route('activities.index') }}">{{ __('sections.extractivities') }}</a>
-                        <a href="{{ route('meals.index') }}">{{ __('sections.meals') }}</a>
-                        <a href="{{ url('program') }} ">{{ __('sections.infoclass') }}</a>
-                        <a href="{{ url('program') }}">{{ __('sections.program') }}</a>
-                        <a href="{{ url('calendar') }}">{{ __('sections.calendar') }}</a>
+                    <div CLASS="flex flex-col h-[120px] mt-6 pl-4 mx-auto">
+                        <a href="{{ url('aboutm') }}">- {{ __('sections.esupport') }}</a>
+                        <a href="{{ route('activities.index') }}">- {{ __('sections.extractivities') }}</a>
+                        <a href="{{ route('meals.index') }}">- {{ __('sections.meals') }}</a>
+                        <a href="{{ url('program') }} ">- {{ __('sections.infoclass') }}</a>
+                        <a href="{{ url('program') }}">- {{ __('sections.program') }}</a>
+                        <a href="{{ url('calendar') }}">- {{ __('sections.calendar') }}</a>
                     </div>
                     </div>
 
@@ -335,15 +371,6 @@
     </div>
     </div>
 
-
-
-{{-- JAVA SCRIPT--}}
-{{--<a href="javascript:click();" class="p-2 rounded">click and get the prize</a>--}}
-
-{{--<iframe src="{{url('/inner')}}" name="content" class="p-2 bg-red"></iframe>--}}
-{{--                        <a href="javascript:c();">askinfo</a>--}}
-{{--                        <a href="javascript:write();">write</a>--}}
-{{--                        <a href="javascript:Name();">name</a>--}}
 
 
 
@@ -354,7 +381,7 @@
 
     <section class="bg-[#444444] text-white flex inline-flex h-auto w-full font3 text-[17px] ">
         {{--        NAVIGATION--}}
-        <div class="w-[25%] p-5 ml-12 items-center">
+        <div class="lg:w-[25%] p-5 ml-12 items-center">
             <p>Navigation</p>
             <ul class="font5 text-[#6c9abf]  flex flex-col mt-3">
                 @foreach($footer as $foot)
@@ -383,19 +410,21 @@
             </ul>
         </div>
         {{--        QUESTIONNAIRE--}}
-        <div class="w-[20%] p-5 ml-12 items-center">
+        <div class="w-[20%] p-5 ml-12 items-center hidden lg:block">
             {{ __('sections.question') }}
         </div>
         {{--        FINANCE--}}
-        <div class="w-[20%] p-5 ml-12 items-center">
+        <div class="w-[20%] p-5 ml-12 items-center hidden lg:block">
             {{ __('sections.finance') }}
             <ul class="flex flex-col mt-4">
                 <li class="text-[#6c9abf] py-1 font5">{{ __('sections.bank') }}: Postfinance </li>
-                <li class="text-[#6c9abf] py-1 font5">IBAN: CH49 0900 0000 1201 0388 8</li>
+                <li class="text-[#6c9abf] py-1 font5">IBAN: {{ $contact[0]['iban'] }}</li>
+                <li class="text-[#6c9abf] py-1 font5">{{ __('sections.account').' : '.$contact[0]['accountNumber'] }}</li>
+                <li class="text-[#6c9abf] py-1 font5">BIC: {{ $contact[0]['bic'] }}</li>
         </div>
 
         {{--        CONTACT--}}
-        <div class="w-[24%] p-5 ml-12 items-center mx-auto">
+        <div class="w-[24%] p-5 ml-12 items-center mx-auto hidden lg:block">
             {{ __('sections.contact') }}
             <ul class="flex flex-col mt-4">
                 <li class="flex inline-flex font5 items-center text-[#6c9abf] py-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill mr-2" viewBox="0 0 16 16">
@@ -415,7 +444,23 @@
         </div>
 
     </section>
-    <div class="flex justify-center  sm:items-center sm:justify-between bg-[#2b2b2b] font2 h-[36px]">
+    
+    <!--ICONS-->
+    <div class="  w-full flex inline-flex bg-[#444444]  items-center   pl-[30%] ">
+        
+        <a href="https://www.chabad.org/"><img src="{{ env('APP_URL')}}/img/habad.png" class="w-[100px] h-auto p-3" alt="site Chabad.org" title="site Chabad.org"></a>
+        <a href="https://www.habadgeneve.ch/"><img src="{{ env('APP_URL')}}/img/hgeneve.jpeg" class="w-[100px] h-auto p-3" alt="Habad Geneve" title="Habad Geneve"></a>
+        <a href="https://www.ecoledesarches.ch"><img src="{{ env('APP_URL')}}/img/arches.png" class="w-[100px] h-auto p-3" alt="Ecole des Arches" title="Ecole des Arches"></a>
+         <a href="https://www.habadgeneve.ch/templates/section_cdo/aid/2325034/jewish/Gan-Yossef-Habad-Crche-et-Maternelle.htm">
+             <img src="{{ env('APP_URL')}}/img/gan.png" class="w-[100px] h-auto p-3" alt="Gan Habad" title="Gan Habad"></a>
+         <a href="https://www.ecolemoser.ch/"><img src="{{ env('APP_URL')}}/img/ecolem.jpeg" class="w-[100px] h-auto p-3" alt="ecole Moser" title="ecole Moser"></a>
+        
+    </div>
+    
+    
+    
+    
+    <div class="flex flex-justify  sm:items-center sm:justify-between bg-[#2b2b2b] font2 h-[36px]">
         <div class="text-center  text-gray-500 sm:text-left">
             <div class="flex items-center ml-4">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-[#7594ae]">
@@ -442,8 +487,8 @@
 
 
 
-        <div class="mx-4 text-center  text-gray-200 text-right  font2 ">
-            for <span class="text-[#7594ae]">Ohalei Mena'hem School</span> v1.0 ©  <?=date('Y') ?>
+        <div class="mx-4 text-center  text-gray-200 text-right  font2 hidden lg:block">
+            for <span class="text-[#7594ae]">Ohalei Menahem School</span> v1.0 ©  2003 - <?=date('Y') ?>
         </div>
     </div>
 
@@ -462,6 +507,10 @@
         function go(){
 
         }
+        
+        // function openImage($link){
+        //     document.getElementById($link);
+        // }
 
 
         //opens new watsapp window
@@ -470,16 +519,18 @@
         }
 
 
-        {{--var url = "{{ route('changeLang') }}";--}}
-
-        {{--$(".changeLang").change(function(){--}}
-        {{--    window.location.href = url + "?lang="+ $(this).val();--}}
-        {{--});--}}
+        
 
     </script>
 
-
-
+<!--lightbox gallery display-->
+    <script>
+        $(document).on("click", '[data-toggle="lightbox"]', 
+        function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    </script>
 
 
 

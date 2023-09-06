@@ -3,9 +3,13 @@
 
     {{--    BANNER--}}
 
-    <section class="max-w-6xl  m-auto px-auto   bg-white  position-static mt-2">
-        <img src="{{ env('APP_URL') }}/img/slide-5.jpeg" class="w-[100%] h-auto pt-5 parent position-sticky">
-        <div class="position-relative sopra0 font3 text-md">
+    <section class="max-w-6xl  m-auto px-auto   bg-white  position-static mt-2 ">
+         <div class="sm:block lg:hidden">
+             <h3 class=" text-[#2f506c] text-lg mx-4 my-2">Ecole Ohalei Mena'hem</h3>
+         </div>
+         
+        <img src="{{ env('APP_URL') }}/img/slide-5.jpeg" class="w-[100%] h-auto pt-5 parent position-sticky hidden lg:block">
+        <div class="position-relative sopra0 font3 text-md hidden lg:block">
             <p class=" h-[40px] w-fit bg-[#6091ba] text-white px-3 py-1.5  uppercase mb-1">
                 {{ __('sections.banner1') }}
             </p>
@@ -21,18 +25,19 @@
         {{--    first column    ABOUT            --}}
         <main class="flex inline-flex w-full   ">
 
-
+       
+        
             {{--  second column MAIN CONTENT NEWS--}}
 
     {{--MAIN SECTION CONTENT THAT WE INSERT INTO WELCOME.BLADE.PHP--}}
 
-    <div class="w-[20%]  mr-5   text-[#2f506c] pb-3  ">
+    <div class="w-[20%]  mr-4   text-[#2f506c] pb-3 hidden lg:block ">
 {{--        ABOUT SECTION--}}
         <section class="bg-gray-50 mb-4 h-[200px] pt-3 items-center">
             <a class="font3 text-[#2f506c] text-lg p-3 pl-0 pt-[12px] border-t-2 border-[#6091ba] " href="{{ url('about') }}">
                 {{ __('sections.about') }}
             </a>
-            <img src="/app/ganhbd/public/img/img1.jpeg" class="w-[150px] h-[120px] pl-[10%] pt-[20px]"/>
+            <img src="{{ env('APP_URL')}}/img/img1.jpeg" class="w-[150px] h-[120px] pl-[10%] pt-[20px]"/>
         </section>
 
 {{--        TIMETABLE--}}
@@ -53,16 +58,17 @@
 
         {{--  IMAGES--}}
         <section class= "bg-gray-50  h-[250px] items-center flex flex-col mt-4">
-            <a class="font3 text-[#2f506c] text-lg pt-4 pl-0   border-t-2 border-[#6091ba] align-items-lg-start">
+            <a class="font3 text-[#2f506c] text-lg pt-4 pl-0   border-t-2 border-[#6091ba] align-items-lg-start " href="{{ route('photos.index') }} ">
                 {{ __('sections.photos') }}
             </a>
-            <div>
+            
+            <div class="mt-1 flex inline-flex flex-wrap h-[160px] m-3 pl-2">
                 @foreach($photos as $image)
-                    @if($image->iteration > 5)
-                    <a href="{{ route('photos.show', $image['id']) }}">
-                        <img src="{{ env('APP_URL').$image['link'] }}" class="h-[50px] border-white border-l-4">
+                    @if($loop->index < 6)
+                    <a href="{{ route('photos.show', $image['id']) }}" class="m-1">
+                        <img src="{{ env('APP_URL').'/'.$image['link'] }}" class="h-[50px] border-white border-l-4 frame1 items-center">
                     </a>
-                        @break
+                   
                     @endif
                 @endforeach
             </div>
@@ -85,7 +91,7 @@
     {{--    second column      NEWS          --}}
 
 
-<div class="w-[60%] mr-5  bg-gray-50 text-[#2f506c] p-3 pt-0  pb-0 pt-[12px] pl-0 mb-0">
+<div class="lg:w-[60%] mr-4  bg-gray-50 text-[#2f506c] p-3   pb-0 pt-[12px] pr-3 mb-0 adapt sm:w-[100%]">
     <a href="{{url('novitas')}}" class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[15px] px-3 h3">
         News
     </a>
@@ -95,14 +101,16 @@
             {{--   news1     --}}
             <div class="border-b">
                 <div class="flex inline-flex">
-                    <img src="{{env('APP_URL').$new->photo }}" class="w-[30px] h-[30px] pl-3 mt-2">
-                    <div class="font3 text-[#7fa7cb] pl-4">
+                    
+                    <img src="{{env('APP_URL').'/img/news/news.png' }}" class="w-auto h-[30px] pl-3 mt-2">
+                 
+                    <div class="font3 text-[#7fa7cb] pl-4 text-blue-400">
                         <a href="{{ route('novitas.show', $new->id) }}">{{$new->{'title_'.app()->getLocale()} }}</a>
                     </div>
                 </div>
-                <p class="font4 pl-12">
-                    {{substr($new->{'content_'.app()->getLocale()}, 0, 240)}} ...
-                </p>
+                <div class="font4 pl-12 ml-[30px] ">
+                    {!! substr($new->{'content_'.app()->getLocale()}, 0, 240) !!} ...
+                </div>
 
                 <div class="flex inline-flex font4 text-gray-600 py-4 w-full justify-between ">
                     <div class="flex inline-flex font4 text-gray-600  w-[70%] items-center">
@@ -129,7 +137,7 @@
                             {{$new->views}}
                         </p>
                     </div>
-                    <a class=" w-[100px] text-blue-400 inline-flex items-center" href="{{url('novitas')}}">
+                    <a class=" w-[100px] text-blue-400 inline-flex items-center" href="{{ route('novitas.show', $new->id) }}">
                         <div class=" ">{{ __('sections.read') }}..</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right text-blue-400" viewBox="0 0 16 16">
                             <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
@@ -153,7 +161,7 @@
 
 {{--            RIGHT MENU--}}
 
-<x-rightmenu :sidemenu="$sidemenu" :director="$director" />
+<x-rightmenu :sidemenu="$sidemenu" :director="$director" class=" "/>
         </main>
 
     {{--                    TEACHERS CAROUSEL--}}
