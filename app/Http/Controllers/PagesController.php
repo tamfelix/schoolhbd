@@ -20,6 +20,7 @@ use App\Models\Photo;
 use App\Models\Classe;
 use App\Models\Activitie;
 use App\Models\Event;
+use App\Models\Announcement;
 
 class PagesController extends Controller
 {
@@ -40,6 +41,7 @@ class PagesController extends Controller
         public $classes;
         public $events;
         public $footer;
+    public $announcements;
 
 
 
@@ -62,6 +64,8 @@ class PagesController extends Controller
         $this->classes = Classe::all()->pluck('title', 'id')->toArray();
         $this->events = Event::latest()->take(4)->orderBy('created_at', 'desc')->get();
         $this->footer = Page::findMany([10, 11, 12, 15, 9]);
+        $news = Announcement::latest()->orderBy('created_at', 'desc')->pluck('news_id')->toArray();
+        $this->announcements = Novita::findMany($news);
     }
 
 
@@ -87,6 +91,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+            'announcements'=>$this->announcements,
         ]);
     }
 
@@ -113,6 +118,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+            'announcements'=>$this->announcements,
 
         ]);
     }
@@ -141,6 +147,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+            'announcements'=>$this->announcements,
 
 
         ]);
@@ -170,6 +177,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+            'announcements'=>$this->announcements,
 
 
         ]);
@@ -199,6 +207,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+            'announcements'=>$this->announcements,                                        
 
 
         ]);
@@ -229,6 +238,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+             'announcements'=>$this->announcements, 
         ]);
     }
 
@@ -258,6 +268,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+              'announcements'=>$this->announcements,                                          
         ]);
     }
 
@@ -324,6 +335,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+            'announcements'=>$this->announcements,                                           
 
 //
         ]);
@@ -353,6 +365,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+             'announcements'=>$this->announcements,                                         
         ]);
     }
 
@@ -379,7 +392,8 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
-        ]);
+             'announcements'=>$this->announcements,                                             
+                                                         ]);
     }
 
     public function comitee(){
@@ -405,7 +419,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
-
+             'announcements'=>$this->announcements,
 //
         ]);
     }
@@ -433,6 +447,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+             'announcements'=>$this->announcements,                                         
         ]);
     }
 
@@ -458,6 +473,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+              'announcements'=>$this->announcements,                                       
         ]);
 
     }
@@ -484,6 +500,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+             'announcements'=>$this->announcements,                                           
         ]);
 
     }
@@ -510,6 +527,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+             'announcements'=>$this->announcements,                                         
         ]);
 
     }
@@ -536,6 +554,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+              'announcements'=>$this->announcements,                                      
         ]);
 
     }
@@ -563,6 +582,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+             'announcements'=>$this->announcements,                                          
         ]);
     }
 
@@ -589,6 +609,7 @@ class PagesController extends Controller
             'classes' => $this->classes,
             'events' => $this->events,
             'footer' => $this->footer,
+             'announcements'=>$this->announcements,                                           
         ]);
     }
 
