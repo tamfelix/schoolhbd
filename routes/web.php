@@ -96,6 +96,7 @@ Route::resource('/materials', 'MaterialsController');
 Route::resource('/projects', 'ProjectsController');
 Route::resource('/reviews', 'ReviewsController');
 Route::resource('/jobs', 'JobsController');
+Route::resource('/announcements', 'AnnouncementsController');
 
 Route::fallback(function () {return view('layouts.default.404');}
 );
