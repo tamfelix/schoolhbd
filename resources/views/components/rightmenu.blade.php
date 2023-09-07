@@ -21,7 +21,7 @@
     {{--                        MOODLE LOGIN--}}
     <section class=" text-center bg-gray-50 text-[#2f506c] px-3  pl-0 mt-4  h-[280px] max-h-[450px] max-w-[400px]">
 
-        <a class="flex inline-flex items-center font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[0px] pl-1 " href="https://moodle.idistance.school">
+        <a class="flex inline-flex items-center font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[0px] pl-1 " href="https://moodle.ecoleom.ch">
             <div class="">Moodle Login</div>
             <img src="{{env('APP_URL')}}\img\Moodle-Logo.png" class="w-20 h-auto mb-1 ">
         </a>
