@@ -270,7 +270,7 @@ class PagesController extends Controller
             //for moodle api:
             if(1==2)//auth_user_login ($username, $password))
                 {
-                return redirect('https://moodle.idistance.school');
+                return redirect('https://moodle.ecoleom.ch');
             } else{
                 return redirect()->back()->with('failed', __('auth.failed'));
             }
