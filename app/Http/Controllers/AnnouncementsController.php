@@ -82,7 +82,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $annonces = DB::table('announcements')->paginate(4);
+        $annonces = DB::table('novitas')->find($this->selection);
         $text = Page::where('id', 13)->select(['title_en', 'title_fr'])->get();
 
         return view('layouts.default.announcements')->with([
