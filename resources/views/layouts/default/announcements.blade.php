@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('content')
-@php $link = url('activities'); $title = ucfirst($text[0]->{'title_'.app()->getLocale()});@endphp
+@php $link = route('announcements.index'); $title = __('sections.announcements');@endphp
 <x-header :link="$link" :title="$title" />
 
 {{--    <section class="mx-auto w-[70%] mt-8 ">--}}
@@ -20,10 +20,10 @@
                         <div class="flex flex-col items-center">
 {{--                            title--}}
                             <div class="font3 text-xl text-[#7fa7cb] pl-4">
-                                <a href="{{ route('activities.show', $new->id) }}">{{ $new->{'title_'.app()->getLocale()} }}</a>
+                                <a href="{{ route('novitas.show', $new) }}">{{ $new->{'title_'.app()->getLocale()} }}</a>
                             </div>
-                            @if(env('APP_URL').$new->img)
-                                <img src="{{ env('APP_URL').'/'.$new->img }}" class="w-[400px] h-auto frame m-4">
+                            @if(env('APP_URL').$new->photo)
+                                <img src="{{ env('APP_URL').'/'.$new->photo }}" class="w-[400px] h-auto frame m-4">
                             @endif
                         </div>
                         <p class="font3 pl-12 text-gray-800">
@@ -71,7 +71,7 @@
 
 
 @endforeach
-                <p class="w-[300px] items-center">{{$annonces->links()}}</p>
+                
 
 
 
