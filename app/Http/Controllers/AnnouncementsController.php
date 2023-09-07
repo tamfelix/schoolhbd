@@ -82,12 +82,12 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $annonces = DB::table('novitas')->find($this->selection);
+        $annonces = Novitas::find($this->selection);
         $text = Page::where('id', 13)->select(['title_en', 'title_fr'])->get();
 
         return view('layouts.default.announcements')->with([
             'text' => $text,
-
+             'annonces' => $annonces, 
 
             'topmenu' => $this->topmenu,
             'sidemenu' => $this->sidemenu,
@@ -106,8 +106,8 @@ class AnnouncementsController extends Controller
             'events' => $this->events,
             'footer' => $this->footer,
             'activities' => $this->activities,
-            'announcements'=>$this->announcements,
-            'annonces' => $annonces,                                               
+            'announcements' => $this->announcements,
+                                                         
 
         ]);
     }
