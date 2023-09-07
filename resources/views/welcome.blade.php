@@ -249,7 +249,7 @@
                     @php $label =  __('sections.announcements'); $url=route('novitas.index') @endphp
                     <x-section :label="$label" :url="$url" />
                         <div class="flex inline-flex">
-                        @foreach($news as $new)
+                        @foreach($news->take(4) as $new)
 
                              <a href="{{ route('novitas.show', $new->id) }}" class="w-[200px] h-[200px] rounded bg-yellow-100 shadow p-2 m-auto  ">
                                  <div class=" text-center border h-full py-[10%]">{{ $new->{'title_'.$locale} }}</div>
