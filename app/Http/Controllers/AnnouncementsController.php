@@ -107,6 +107,7 @@ class AnnouncementsController extends Controller
             'footer' => $this->footer,
             'activities' => $this->activities,
             'announcements'=>$this->announcements,
+            'annonces' => $annonces,                                               
 
         ]);
     }
